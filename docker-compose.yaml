@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+mysqldb:
+image: mysql:5.7
+restart: unless-stopped
+environment:
+MYSQL_ALLOW_EMPTY_PASSWORD: yes
+ports:
+- 3307:3306
+volumes:
+- db:/var/lib/mysql
+timesheet-backend:
+depends_on:
+- mysqldb
+image: mouradhassini/timesheet-devops: 1.0.0
+restart: on-failure
+environment:
+MYSQL_ROOT PASSWORD: root_password
+ports:
+- 6868:8082
+stdin_open: true
+tty: true
