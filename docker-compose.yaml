@@ -12,7 +12,7 @@ volumes:
 timesheet-backend:
 depends_on:
 - mysqldb
-image: mouradhassini/timesheet-devops: 1.0.0
+image: saifdoghri7/achat: 1.0.0
 restart: on-failure
 environment:
 MYSQL_ROOT PASSWORD: root_password
