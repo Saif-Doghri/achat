@@ -1,22 +1,26 @@
-version: "1"
+version: '3'
+
 services:
-  mysqldb:
-    image: mysql:5.7
-    restart: unless-stopped
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+  achat-app:
+    image: khalilsr/achat:1.0.0
     ports:
-      - 3307:3306
-    volumes:
-      - db:/var/lib/mysql
-  achat-backend:
-      depends_on:
-        - mysqldb
-      image: khalilsr/achat:1.0.0
-      restart: on-failure
-      environment:
-        MYSQL_ROOT_PASSWORD: root
-      ports:
-        - 6868:8082
-      stdin_open: true
-      tty: true
+      - "8089:8089"
+    depends_on:
+      - mysql-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/achatdb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+    networks:
+      - achat-network
+
+  mysql-db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: achatdb
+    networks:
+      - achat-network
+
+networks:
+  achat-network:
