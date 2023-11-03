@@ -6,7 +6,8 @@ services:
       image: mysql:5.7
       restart: unless-stopped
       environment:
-        - MYSQL_ROOT_PASSWORD=
+        #MYSQL_ROOT_PASSWORD=
+        - MYSQL_ALLOW_EMPTY_PASSWORD=yes
         - MYSQL_DATABASE=achatdb
       ports:
         - 3307:3306
@@ -33,3 +34,4 @@ services:
         tty: true
 volumes:
     db:
+    
