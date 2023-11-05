@@ -10,7 +10,7 @@ services:
   achat-backend:
     depends_on:
       - mysqldb
-    image: saifdoghri7/achat:1.0.0
+    image: khalilsr/achat:1.0.0
     restart: on-failure
     environment:
       MYSQL_ROOT PASSWORD: root_password
