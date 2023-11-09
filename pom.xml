@@ -60,7 +60,7 @@
 		<repository>
 			<id>deploymentRepo</id>
 			<name>Nexus Repository</name>
-			<url>http://${currentIpAddress}:8081/repository/maven-releases/</url>
+			<url>http://192.168.1.230:8081/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
 
@@ -78,26 +78,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.2.0</version>
-				<executions>
-					<execution>
-						<id>regex-property</id>
-						<goals>
-							<goal>regex-property</goal>
-						</goals>
-						<configuration>
-							<name>currentIpAddress</name>
-							<value>${project.baseUri}</value>
-							<regex>http://([^:/]+)</regex>
-							<replacement>$1</replacement>
-							<failIfNoMatch>false</failIfNoMatch>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+
 		</plugins>
 	</build>
 
