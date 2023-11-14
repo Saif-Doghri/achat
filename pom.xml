@@ -53,7 +53,6 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		<dependencies>
 			<!-- JUnit -->
 			<dependency>
 				<groupId>junit</groupId>
@@ -69,7 +68,7 @@
 				<version>3.11.2</version>
 				<scope>test</scope>
 			</dependency>
-		</dependencies>
+
 	</dependencies>
 
 	<distributionManagement>
