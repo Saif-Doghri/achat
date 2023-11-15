@@ -40,9 +40,26 @@ services:
         - achat-backend
       networks:
         - AngularNetwork
+
+
+
+    # PHPMyAdmin service
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      ports:
+        - "8080:8080"
+      depends_on:
+        - mysql
+      environment:
+        PMA_HOST: mysql
+        PMA_USER: root
+        PMA_PASSWORD: root
 volumes:
     db:
 
 
-networks:
-  AngularNetwork:
+
+
+
+
+
