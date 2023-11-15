@@ -23,9 +23,11 @@ services:
         - prometheus_data:/prometheus
       command:
         - '--config.file=/etc/prometheus/prometheus.yml'
+      links:
+        - prom_mysql_exporter
       ports:
         - 9090:9090
-        
+
     prom_mysql_exporter:
       image: prom/mysqld-exporter
       links:
