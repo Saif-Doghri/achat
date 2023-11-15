@@ -38,11 +38,7 @@ services:
         - 4200:80
       depends_on:
         - achat-backend
-      networks:
-        - AngularNetwork
-
-
-
+      
     # PHPMyAdmin service
     phpmyadmin:
       image: phpmyadmin/phpmyadmin
