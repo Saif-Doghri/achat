@@ -13,6 +13,7 @@ scrape_configs:
         - '192.168.1.222:8082'
   
   - job_name: 'prometheus'
+    metrics_path: '/metrics'
     static_configs:
       - targets: 
         - '192.168.1.222:9090'
