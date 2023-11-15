@@ -30,6 +30,7 @@ services:
 
     prom_mysql_exporter:
       image: prom/mysqld-exporter
+      restart: unless-stopped
       links:
         - mysqldb
       ports:
