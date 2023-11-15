@@ -26,6 +26,9 @@ services:
         - '--web.console.templates=/etc/prometheus/consoles'
         - '--web.enable-lifecycle'
         - '--enable-feature=agent'
+      
+      ports:
+        - 9090:9090
 
     achat-backend:
         depends_on:
