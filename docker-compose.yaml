@@ -31,7 +31,7 @@ services:
     prom_mysql_exporter:
       image: prom/mysqld-exporter
       links:
-        - mysql
+        - mysqldb
       ports:
         - '9104:9104'
       environment:
