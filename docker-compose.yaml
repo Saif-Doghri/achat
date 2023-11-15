@@ -25,6 +25,16 @@ services:
         - '--config.file=/etc/prometheus/prometheus.yml'
       ports:
         - 9090:9090
+        
+    prom_mysql_exporter:
+      image: prom/mysqld-exporter
+      links:
+        - mysql
+      ports:
+        - '9104:9104'
+      environment:
+        DATA_SOURCE_NAME: root:@(mysql:3306)/achatdb
+      command: /bin/mysqld_exporter collect.binlog_size=true collect.info_schema.processlist=true
 
     grafana:
         image: grafana/grafana
