@@ -14,11 +14,12 @@ services:
       volumes:
         - db:/var/lib/mysql
     prometheus:
-      image: prom/prometheus:v2.35.0
+      image: prom/prometheus
       container_name: prometheus-achat-backend
       volumes:
         - ./prometheus:/etc/prometheus
         - prometheus_data:/prometheus
+        - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       command:
         - '--config.file=/etc/prometheus/prometheus.yml'
         - '--storage.agent.path=/prometheus'
