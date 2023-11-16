@@ -35,7 +35,7 @@ services:
     AngularAchat:
       image: badreddinen/front:1.0.0
       ports:
-        - 4200:80
+        - 80:80
       depends_on:
         - achat-backend
 
