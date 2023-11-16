@@ -32,12 +32,7 @@ services:
 
         stdin_open: true
         tty: true
-    AngularAchat:
-      image: badreddinen/front:1.0.0
-      ports:
-        - 80:80
-      depends_on:
-        - achat-backend
+    
 
 
 volumes:
