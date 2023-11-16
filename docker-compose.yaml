@@ -13,44 +13,44 @@ services:
       volumes:
         - db:/var/lib/mysql
     
-    prometheus:
-      image: prom/prometheus
-      container_name: prometheus-achat-backend
-      restart: unless-stopped
-      volumes:
-        - ./prometheus:/etc/prometheus
-        - prometheus_data:/prometheus
-      command:
-        - '--config.file=/etc/prometheus/prometheus.yml'
-      links:
-        - prom_mysql_exporter
-      ports:
-        - 9090:9090
+    # prometheus:
+    #   image: prom/prometheus
+    #   container_name: prometheus-achat-backend
+    #   restart: unless-stopped
+    #   volumes:
+    #     - ./prometheus:/etc/prometheus // mount the local ./prometheus directory to /etc/prometheus in the container
+    #     - prometheus_data:/prometheus // mount the prometheus_data volume to /prometheus in the container
+    #   command:
+    #     - '--config.file=/etc/prometheus/prometheus.yml' // specify the location of the prometheus configuration file
+    #   links:
+    #     - prom_mysql_exporter // link to the prom_mysql_exporter service
+    #   ports:
+    #     - 9090:9090 // expose port 9090 on the host machine
 
-    prom_mysql_exporter:
-      image: prom/mysqld-exporter
-      restart: unless-stopped
-      links:
-        - mysqldb
-      ports:
-        - '9104:9104'
-      environment:
-        DATA_SOURCE_NAME: root:@(mysql:3306)/achatdb
-      command: /bin/mysqld_exporter collect.binlog_size=true collect.info_schema.processlist=true
+    # prom_mysql_exporter:
+    #   image: prom/mysqld-exporter
+    #   restart: unless-stopped
+    #   links:
+    #     - mysqldb // link to the mysqldb service
+    #   ports:
+    #     - '9104:9104' // expose port 9104 on the host machine
+    #   environment:
+    #     DATA_SOURCE_NAME: root:@(mysql:3306)/achatdb // specify the data source name for the exporter
+    #   command: /bin/mysqld_exporter collect.binlog_size=true collect.info_schema.processlist=true // specify the command to run when starting the container
 
-    grafana:
-        image: grafana/grafana
-        container_name: grafana-achat-backend
-        restart: unless-stopped
-        ports:
-          - 3000:3000
-        volumes:
-          - ./grafana:/etc/grafana/provisioning
-          - ./grafana/dashboards:/var/lib/grafana/dashboards
-          - ./grafana/datasources:/var/lib/grafana/datasources
-        environment:
-          - GF_SECURITY_ADMIN_USER=admin
-          - GF_SECURITY_ADMIN_PASSWORD=thinkpad
+    # grafana:
+    #     image: grafana/grafana
+    #     container_name: grafana-achat-backend
+    #     restart: unless-stopped
+    #     ports:
+    #       - 3000:3000 // expose port 3000 on the host machine
+    #     volumes:
+    #       - ./grafana:/etc/grafana/provisioning // mount the local ./grafana directory to /etc/grafana/provisioning in the container
+    #       - ./grafana/dashboards:/var/lib/grafana/dashboards // mount the local ./grafana/dashboards directory to /var/lib/grafana/dashboards in the container
+    #       - ./grafana/datasources:/var/lib/grafana/datasources // mount the local ./grafana/datasources directory to /var/lib/grafana/datasources in the container
+    #     environment:
+    #       - GF_SECURITY_ADMIN_USER=admin // set the Grafana admin username
+    #       - GF_SECURITY_ADMIN_PASSWORD=thinkpad // set the Grafana admin password
 
 
     achat-backend:
