@@ -25,7 +25,7 @@ services:
       links:
         - prom_mysql_exporter
       ports:
-        - 9090:9090
+        - 9091:9091
 
     prom_mysql_exporter:
       image: prom/mysqld-exporter
@@ -43,7 +43,7 @@ services:
         container_name: grafana-achat-backend
         restart: unless-stopped
         ports:
-          - 3000:3000
+          - 3001:3001
         volumes:
           - ./grafana:/etc/grafana/provisioning
           - ./grafana/dashboards:/var/lib/grafana/dashboards
