@@ -8,14 +8,19 @@ pipeline {
             }
         }
 
-        stage('Unit Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-        stage('Integration Test') {
+//         stage('Unit Test') {
+//             steps {
+//                 sh 'mvn test'
+//             }
+//         }
+//         stage('Integration Test') {
+//                     steps {
+//                         sh 'mvn verify -DskipUnitTests'
+//                     }
+//                 }
+        stage('Maven Build') {
                     steps {
-                        sh 'mvn verify -DskipUnitTests'
+                        sh 'mvn clean install'
                     }
                 }
         stage('Deploy') {
