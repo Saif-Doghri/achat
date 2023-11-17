@@ -8,6 +8,14 @@ pipeline {
             }
         }
 
+        stage('static code analysis') {
+                    steps {
+                        withSonarQubeEnv(credentialsId: 'sonarToken1') {
+                            sh 'mvn clean package sonar:sonar'
+                        }
+                    }
+                }
+
 //         stage('Unit Test') {
 //             steps {
 //                 sh 'mvn test'
@@ -18,11 +26,11 @@ pipeline {
 //                         sh 'mvn verify -DskipUnitTests'
 //                     }
 //                 }
-        stage('Maven Build') {
-                    steps {
-                        sh 'mvn clean install'
-                    }
-                }
+//         stage('Maven Build') {
+//                     steps {
+//                         sh 'mvn clean install'
+//                     }
+//                 }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
