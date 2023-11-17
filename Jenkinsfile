@@ -18,6 +18,14 @@ pipeline {
                     }
                 }
 
+        stage('Quality Gate') {
+                steps {
+                    script{
+                        waitForQualityGate abortPipeline: false, credentialsId: 'sonarToken1'
+                    }
+                }
+            }
+
         stage('Unit Test') {
             steps {
                 sh 'mvn test'
